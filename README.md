@@ -1,7 +1,7 @@
 outburst
 ========
 
-A simple realtime chat application written with Meteor.
+A simple realtime chat application using [Meteor](http://meteor.com).
 
 Demo
 ====
