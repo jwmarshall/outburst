@@ -1,0 +1,133 @@
+<head>
+  <title>Outburst</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url(http://fonts.googleapis.com/css?family=Roboto+Slab);
+    body { padding-top:70px; }
+    #messages { height:416px !important; overflow:scroll; }
+    .list-group-item-text { font-size:11px; }
+</head>
+
+<body>
+  {{> navbar}}
+  {{> usernameModal}}
+  {{> page}}
+  {{> footer}}
+</body>
+
+<template name="navbar">
+  <div class="navbar navbar-fixed-top">
+    <div class="container">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Outburst</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav navbar-nav">
+        </ul>
+        {{loginButtons}}
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</template>
+
+<template name="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <hr>
+        <footer>
+          <center>Outburst</center>
+        </footer>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="usernameModal">
+  <div id="usernameModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Choose a Username</h4>
+        </div>
+        <div class="modal-body">
+          <div id="nullUsernameError" class="alert hide">
+            <strong>Username must not be null.</strong>
+          </div>
+          <div id="usernameTakenError" class="alert hide">
+            <strong>Username is already taken.</strong>
+          </div>
+          <input type="text" id="usernameModalTextField">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="chat">
+  <div id="messages">
+    <table class="table table-striped">
+      <tbody>
+        {{#each messages}}
+          <tr class="msg">
+            <td>&lt;<cite>{{username}}</cite>&gt; {{msg}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<template name="reply">
+  <input type="text" id="reply">
+</template>
+
+<template name="roomList">
+  <h5>Rooms</h5>
+  <div id="roomList" class="list-group">
+    {{#each rooms}}
+      <a href="#" id="room_{{_id}}" class="list-group-item{{#if isCurrentRoom _id }} active{{/if}}">
+        <span class="badge">{{active}}</span>
+        <strong>{{name}}</strong>
+        <p class="list-group-item-text">{{topic}}</p>
+      </a>
+    {{/each}}
+  </div>
+</template>
+
+<template name="userList">
+  <h5>Users</h5>
+  <div class="list-group">
+    {{#each users}}
+      <a href="#" class="list-group-item">
+        {{username}}
+      </a>
+    {{/each}}
+  </div>
+</template>
+
+<template name="page">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2">
+        {{> roomList}}
+      </div>
+      <div class="col-lg-8">
+        <div class="well">
+          {{> chat}}
+          {{> reply}}
+        </div>
+      </div>
+      <div class="col-lg-2">
+        {{> userList}}
+      </div>
+    </div>
+  </div>
+</template>
+
