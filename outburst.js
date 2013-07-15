@@ -130,7 +130,7 @@ if (Meteor.isClient) {
     {
       ok: function (text, event) {
         if (Meteor.userId() == null) {
-          alert('you must login to chat');
+          $("#accessDeniedModal").modal();
         } else {
           var ts = Date.now() / 1000;
           Messages.insert({ username: Meteor.user().username, user_id: Meteor.userId(), room_id: Session.get('room_id'), msg: text, time: ts });

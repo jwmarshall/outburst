@@ -10,6 +10,7 @@
 
 <body>
   {{> navbar}}
+  {{> accessDeniedModal}}
   {{> usernameModal}}
   {{> page}}
   {{> footer}}
@@ -41,6 +42,24 @@
         <footer>
           <center>Outburst</center>
         </footer>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="accessDeniedModal">
+  <div id="accessDeniedModal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Access Denied</h4>
+        </div>
+        <div class="modal-body">
+          <strong>You must be logged in to chat.</strong>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
       </div>
     </div>
   </div>
